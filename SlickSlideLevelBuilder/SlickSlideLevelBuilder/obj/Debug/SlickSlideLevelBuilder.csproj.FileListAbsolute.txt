@@ -1,0 +1,10 @@
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\bin\Debug\SlickSlideLevelBuilder.exe.config
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\bin\Debug\SlickSlideLevelBuilder.exe
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\bin\Debug\SlickSlideLevelBuilder.pdb
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.csprojResolveAssemblyReference.cache
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.LevelConfig.resources
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.Properties.Resources.resources
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.csproj.GenerateResource.Cache
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.exe
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.pdb
+D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.LevelBuilder.resources
