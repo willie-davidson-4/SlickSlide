@@ -25,5 +25,10 @@ namespace SlickSlideLevelBuilder
 		{
 			return strImagePath;
 		}
+
+		public char GetChar()
+		{
+			return chrTileChar;
+		}
 	}
 }

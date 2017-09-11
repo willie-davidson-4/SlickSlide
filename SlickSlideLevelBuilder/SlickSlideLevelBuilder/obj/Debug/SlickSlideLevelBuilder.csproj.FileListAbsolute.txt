@@ -8,3 +8,13 @@ D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlid
 D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.exe
 D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.pdb
 D:\Slick Slide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.LevelBuilder.resources
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\bin\Debug\SlickSlideLevelBuilder.exe.config
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\bin\Debug\SlickSlideLevelBuilder.exe
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\bin\Debug\SlickSlideLevelBuilder.pdb
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.LevelBuilder.resources
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.LevelConfig.resources
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.LevelSolutions.resources
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.Properties.Resources.resources
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.csproj.GenerateResource.Cache
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.exe
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.pdb

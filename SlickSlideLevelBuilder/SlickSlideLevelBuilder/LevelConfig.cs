@@ -12,6 +12,10 @@ namespace SlickSlideLevelBuilder
 {
 	public partial class LevelConfig : Form
 	{
+		//TODO: MUST DO -
+		//	1. 'Solve' can only create 1 solution.
+		//	2. Need to create loading functionality.
+
 		public LevelConfig()
 		{
 			InitializeComponent();

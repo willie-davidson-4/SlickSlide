@@ -351,11 +351,11 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.PictureBox pictureBoxStepTile;
-		private System.Windows.Forms.PictureBox pictureBoxStartTile;
-		private System.Windows.Forms.PictureBox pictureBoxSlideTile;
-		private System.Windows.Forms.PictureBox pictureBoxEndTile;
-		private System.Windows.Forms.PictureBox pictureBoxBlockTile;
+		public System.Windows.Forms.PictureBox pictureBoxStepTile;
+		public System.Windows.Forms.PictureBox pictureBoxStartTile;
+		public System.Windows.Forms.PictureBox pictureBoxSlideTile;
+		public System.Windows.Forms.PictureBox pictureBoxEndTile;
+		public System.Windows.Forms.PictureBox pictureBoxBlockTile;
 		public System.Windows.Forms.PictureBox pictureBoxCurrentTile;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label6;

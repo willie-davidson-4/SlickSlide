@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GraphicalOverlay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GraphicalOverlay.designer.cs">
+      <DependentUpon>GraphicalOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="LevelBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,18 @@
     <Compile Include="LevelConfig.Designer.cs">
       <DependentUpon>LevelConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="LevelSolutions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LevelSolutions.Designer.cs">
+      <DependentUpon>LevelSolutions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Line.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Line.Designer.cs">
+      <DependentUpon>Line.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tile.cs" />
@@ -66,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LevelConfig.resx">
       <DependentUpon>LevelConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LevelSolutions.resx">
+      <DependentUpon>LevelSolutions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

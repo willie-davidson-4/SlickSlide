@@ -26,6 +26,17 @@ namespace SlickSlideLevelBuilder
 			this.FormBorderStyle = FormBorderStyle.FixedSingle;
 		}
 
+		#region Enums
+		enum Direction
+		{
+			Up = 0,
+			Down,
+			Left,
+			Right,
+			None
+		};
+		#endregion
+
 		#region Properties
 		LevelConfig objLevelConfig = null;
 		int intRows;
@@ -68,8 +79,9 @@ namespace SlickSlideLevelBuilder
 					p.BorderStyle = BorderStyle.FixedSingle;
 					p.Click += pictureBoxCommon_Click;
 
-					p.MouseMove += pictureBoxCommon_MouseMove;
-					
+					//p.MouseEnter += pictureBoxCommon_MouseEnter;
+					//p.MouseMove += pictureBoxCommon_MouseMove;
+
 					if (OldTileGrid != null && column < OldTileGrid.GetLength(0) && row < OldTileGrid.GetLength(1) && OldTileGrid[column, row] != null)
 						SetTile(((Tile)OldTileGrid[column, row].Tag), p);
 
@@ -174,7 +186,6 @@ namespace SlickSlideLevelBuilder
 			intColumns++;
 			UpdateTiles();
 		}
-		#endregion
 
 		private void toolStripMenuItemRemoveRow_Click(object sender, EventArgs e)
 		{
@@ -219,6 +230,188 @@ namespace SlickSlideLevelBuilder
 		private void toolStripMenuItemShiftUp_Click(object sender, EventArgs e)
 		{
 			ShiftLevel(0, -1);
+		}
+
+		private void toolStripMenuItemSaveLevel_Click(object sender, EventArgs e)
+		{
+			string strLevel = "";
+			for (int row = 0; row < intRows; row++)
+			{
+				for (int column = 0; column < intColumns; column++)
+				{
+					if (TileGrid[column, row].Tag == null)
+						strLevel += 'n';
+					else
+						strLevel += ((Tile)TileGrid[column, row].Tag).GetChar();
+				}
+
+				strLevel += "\r\n";
+			}
+
+			using (SaveFileDialog sfd = new SaveFileDialog())
+			{
+				sfd.Filter = "Level Files (*.lvl)|*.lvl";
+
+				if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				{
+					System.IO.File.AppendAllText(sfd.FileName, strLevel);
+				}
+			}
+		}
+		#endregion
+
+		public List<List<Tuple<int, int>>> Solutions = null;
+		LevelSolutions objLevelSolutions = null;
+
+		private void solveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Solutions = new List<List<Tuple<int, int>>>();
+			int intStartColumn = -1;
+			int intStartRow = -1;
+
+			int intMoveTiles = 0;
+
+			for (int row = 0; row < intRows; row++)
+			{
+				for (int column = 0; column < intColumns; column++)
+				{
+					//TODO: START CHAR
+					if(TileGrid[column, row].Tag != null && ((Tile)TileGrid[column, row].Tag).GetChar() == ((Tile)objLevelConfig.pictureBoxStartTile.Tag).GetChar())
+					{
+						intStartColumn = column;
+						intStartRow = row;
+					}
+					else if (TileGrid[column, row].Tag != null && ((Tile)TileGrid[column, row].Tag).GetChar() == ((Tile)objLevelConfig.pictureBoxStepTile.Tag).GetChar())
+						intMoveTiles++;
+				}
+			}
+
+			intTotalMoveTiles = intMoveTiles;
+
+			if(intStartRow != -1 && intStartColumn != -1)
+				RecursiveSolve(intStartColumn, intStartRow, Direction.None, new List<Tuple<int, int>>(), 0);
+
+			if (objLevelSolutions != null)
+				objLevelSolutions.Close();
+
+			objLevelSolutions = new LevelSolutions(TileGrid, Solutions);
+			objLevelSolutions.Show();
+		}
+
+		//TODO: HAVE A COUNTER THAT COUNTS UP FOR EVERY TILE, MAKING SURE THAT, BY THE TIME WE REACH THE END TILE, WE HAVE STEPPED ON EVERY TILE.
+		//TODO: HAVE A LevelSolution FORM OBJECT. ALWAYS CLOSE PREVIOUS ONE AND OPEN THE NEW ONE HERE. PASS IT THE TILE GRID AND THE SOLUTIONS LIST. IT WILL HAVE A DROPBOX TO CHOOSE SOLUTION AND WILL DRAW THE SOLUTION WITH A GREEN LINE).
+
+		int intTotalMoveTiles = -1;
+
+		//TODO: HOW TO STORE ALL THE DIFFERENT PATHS
+		private void RecursiveSolve(int intCurrColumn, int intCurrRow, Direction enmPrevDir, List<Tuple<int, int>> CurrentSolutionPath, int intMoveTileCount)
+		{
+			var CurrentPath = new List<Tuple<int, int>>(CurrentSolutionPath);
+			CurrentPath.Add(new Tuple<int, int>(intCurrColumn, intCurrRow));
+
+			if(((Tile)TileGrid[intCurrColumn, intCurrRow].Tag).GetChar() == ((Tile)objLevelConfig.pictureBoxSlideTile.Tag).GetChar())
+			{
+				bool blnEndTile = false;
+				int intNewColumn = intCurrColumn;
+				int intNewRow = intCurrRow;
+
+				if(CanMoveToTile(CurrentPath, enmPrevDir, ref intNewColumn, ref intNewRow, ref intMoveTileCount, out blnEndTile))
+				{
+					if(blnEndTile && intMoveTileCount == intTotalMoveTiles/*TODO: YOU HAVE TOUCHED EVERY SINGLE MOVETILE*/)
+					{
+						CurrentPath.Add(new Tuple<int, int>(intNewColumn, intNewRow));
+						Solutions.Add(CurrentPath);
+						return;
+					}
+
+					RecursiveSolve(intNewColumn, intNewRow, enmPrevDir, CurrentPath, intMoveTileCount);
+				}
+				else
+					return;
+			}
+
+			for (int i = 0; i < 4; i++)
+			{
+				bool blnEndTile = false;
+				int intNewColumn = intCurrColumn;
+				int intNewRow = intCurrRow;
+
+				int intCurrentMoveTileCount = intMoveTileCount;
+
+				if(CanMoveToTile(CurrentPath, (Direction)i, ref intNewColumn, ref intNewRow, ref intCurrentMoveTileCount, out blnEndTile))
+				{
+					if(blnEndTile && intMoveTileCount == intTotalMoveTiles /*TODO: YOU HAVE TOUCHED EVERY SINGLE MOVETILE*/)
+					{
+						CurrentPath.Add(new Tuple<int, int>(intNewColumn, intNewRow));
+						Solutions.Add(CurrentPath);
+						return;
+					}
+
+					RecursiveSolve(intNewColumn, intNewRow, (Direction)i, CurrentPath, intCurrentMoveTileCount);
+				}
+			}
+		}
+
+		private bool CanMoveToTile(List<Tuple<int, int>> CurrentSolution, Direction enmTryDir, ref int intNewColumn, ref int intNewRow, ref int intMoveTileCount, out bool blnEndTile)
+		{
+			blnEndTile = false;
+
+			switch (enmTryDir)
+			{
+				case Direction.Up:
+					{
+						intNewRow--;
+						break;
+					}
+				case Direction.Down:
+					{
+						intNewRow++;
+						break;
+					}
+				case Direction.Left:
+					{
+						intNewColumn--;
+						break;
+					}
+				case Direction.Right:
+					{
+						intNewColumn++;
+						break;
+					}
+				default:
+					break;
+			}
+
+			if (intNewColumn < 0 || intNewColumn >= TileGrid.GetLength(0))
+				return false;
+			else if (intNewRow < 0 || intNewRow >= TileGrid.GetLength(1))
+				return false;
+
+			if(CurrentSolution.Contains(new Tuple<int,int>(intNewColumn, intNewRow)))
+				return false;
+
+			if(TileGrid[intNewColumn, intNewRow].Tag == null)
+				return false;
+
+			char chrNewTile = ((Tile)TileGrid[intNewColumn, intNewRow].Tag).GetChar();
+
+			//TODO: CHECK IF THIS NEW TILE IS VALID. OTHERWISE, CONTINUE.
+			if (chrNewTile == ((Tile)objLevelConfig.pictureBoxStepTile.Tag).GetChar())
+			{
+				//Solutions.Add(CurrentSolution);
+
+				intMoveTileCount++;
+				return true;
+			}
+			else if(chrNewTile == ((Tile)objLevelConfig.pictureBoxSlideTile.Tag).GetChar())
+				return true;
+			else if (chrNewTile == ((Tile)objLevelConfig.pictureBoxEndTile.Tag).GetChar())
+			{
+				blnEndTile = true;
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

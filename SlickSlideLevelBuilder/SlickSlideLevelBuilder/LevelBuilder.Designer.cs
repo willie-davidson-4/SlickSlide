@@ -43,6 +43,7 @@
 			this.toolStripMenuItemShiftDown = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemShiftLeft = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemShiftUp = new System.Windows.Forms.ToolStripMenuItem();
+			this.solveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -63,7 +64,8 @@
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemSaveLevel,
-            this.clearLevelToolStripMenuItem});
+            this.clearLevelToolStripMenuItem,
+            this.solveToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
@@ -73,6 +75,7 @@
 			this.toolStripMenuItemSaveLevel.Name = "toolStripMenuItemSaveLevel";
 			this.toolStripMenuItemSaveLevel.Size = new System.Drawing.Size(152, 22);
 			this.toolStripMenuItemSaveLevel.Text = "Save";
+			this.toolStripMenuItemSaveLevel.Click += new System.EventHandler(this.toolStripMenuItemSaveLevel_Click);
 			// 
 			// clearLevelToolStripMenuItem
 			// 
@@ -141,30 +144,37 @@
 			// toolStripMenuItemShiftRight
 			// 
 			this.toolStripMenuItemShiftRight.Name = "toolStripMenuItemShiftRight";
-			this.toolStripMenuItemShiftRight.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItemShiftRight.Size = new System.Drawing.Size(105, 22);
 			this.toolStripMenuItemShiftRight.Text = "Right";
 			this.toolStripMenuItemShiftRight.Click += new System.EventHandler(this.toolStripMenuItemShiftRight_Click);
 			// 
 			// toolStripMenuItemShiftDown
 			// 
 			this.toolStripMenuItemShiftDown.Name = "toolStripMenuItemShiftDown";
-			this.toolStripMenuItemShiftDown.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItemShiftDown.Size = new System.Drawing.Size(105, 22);
 			this.toolStripMenuItemShiftDown.Text = "Down";
 			this.toolStripMenuItemShiftDown.Click += new System.EventHandler(this.toolStripMenuItemShiftDown_Click);
 			// 
 			// toolStripMenuItemShiftLeft
 			// 
 			this.toolStripMenuItemShiftLeft.Name = "toolStripMenuItemShiftLeft";
-			this.toolStripMenuItemShiftLeft.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItemShiftLeft.Size = new System.Drawing.Size(105, 22);
 			this.toolStripMenuItemShiftLeft.Text = "Left";
 			this.toolStripMenuItemShiftLeft.Click += new System.EventHandler(this.toolStripMenuItemShiftLeft_Click);
 			// 
 			// toolStripMenuItemShiftUp
 			// 
 			this.toolStripMenuItemShiftUp.Name = "toolStripMenuItemShiftUp";
-			this.toolStripMenuItemShiftUp.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItemShiftUp.Size = new System.Drawing.Size(105, 22);
 			this.toolStripMenuItemShiftUp.Text = "Up";
 			this.toolStripMenuItemShiftUp.Click += new System.EventHandler(this.toolStripMenuItemShiftUp_Click);
+			// 
+			// solveToolStripMenuItem
+			// 
+			this.solveToolStripMenuItem.Name = "solveToolStripMenuItem";
+			this.solveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.solveToolStripMenuItem.Text = "Solve";
+			this.solveToolStripMenuItem.Click += new System.EventHandler(this.solveToolStripMenuItem_Click);
 			// 
 			// LevelBuilder
 			// 
@@ -200,5 +210,6 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShiftLeft;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShiftUp;
 		private System.Windows.Forms.ToolStripMenuItem clearLevelToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem solveToolStripMenuItem;
 	}
 }
