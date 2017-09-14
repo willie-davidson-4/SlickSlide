@@ -1,0 +1,5 @@
+t;F:\SlickSlide\SlickSlide\Assets\Sprites\BreakTile.png
+s;F:\SlickSlide\SlickSlide\Assets\Sprites\SlideTile.png
+i;F:\SlickSlide\SlickSlide\Assets\Sprites\EnterTile.png
+e;F:\SlickSlide\SlickSlide\Assets\Sprites\ExitTile.png
+b;F:\SlickSlide\SlickSlide\Assets\Sprites\BlockTile.png

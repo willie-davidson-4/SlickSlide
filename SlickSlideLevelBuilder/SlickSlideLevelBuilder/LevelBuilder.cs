@@ -26,6 +26,21 @@ namespace SlickSlideLevelBuilder
 			this.FormBorderStyle = FormBorderStyle.FixedSingle;
 		}
 
+		public LevelBuilder(int Rows, int Columns, LevelConfig LevelConfig, PictureBox[,] GivenTileGrid)
+		{
+			InitializeComponent();
+
+			objLevelConfig = LevelConfig;
+			intRows = Rows;
+			intColumns = Columns;
+
+			intTileWidth = intTileHeight = 65;
+
+			this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+			TileGrid = GivenTileGrid;
+		}
+
 		#region Enums
 		enum Direction
 		{
@@ -254,7 +269,7 @@ namespace SlickSlideLevelBuilder
 
 				if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
-					System.IO.File.AppendAllText(sfd.FileName, strLevel);
+					System.IO.File.WriteAllText(sfd.FileName, strLevel);
 				}
 			}
 		}
@@ -276,7 +291,7 @@ namespace SlickSlideLevelBuilder
 				for (int column = 0; column < intColumns; column++)
 				{
 					//TODO: START CHAR
-					if(TileGrid[column, row].Tag != null && ((Tile)TileGrid[column, row].Tag).GetChar() == ((Tile)objLevelConfig.pictureBoxStartTile.Tag).GetChar())
+					if (TileGrid[column, row].Tag != null && ((Tile)TileGrid[column, row].Tag).GetChar() == ((Tile)objLevelConfig.pictureBoxStartTile.Tag).GetChar())
 					{
 						intStartColumn = column;
 						intStartRow = row;
@@ -288,7 +303,7 @@ namespace SlickSlideLevelBuilder
 
 			intTotalMoveTiles = intMoveTiles;
 
-			if(intStartRow != -1 && intStartColumn != -1)
+			if (intStartRow != -1 && intStartColumn != -1)
 				RecursiveSolve(intStartColumn, intStartRow, Direction.None, new List<Tuple<int, int>>(), 0);
 
 			if (objLevelSolutions != null)
@@ -309,24 +324,31 @@ namespace SlickSlideLevelBuilder
 			var CurrentPath = new List<Tuple<int, int>>(CurrentSolutionPath);
 			CurrentPath.Add(new Tuple<int, int>(intCurrColumn, intCurrRow));
 
-			if(((Tile)TileGrid[intCurrColumn, intCurrRow].Tag).GetChar() == ((Tile)objLevelConfig.pictureBoxSlideTile.Tag).GetChar())
+			if (((Tile)TileGrid[intCurrColumn, intCurrRow].Tag).GetChar() == ((Tile)objLevelConfig.pictureBoxSlideTile.Tag).GetChar())
 			{
+				bool blnBlockTile = false;
 				bool blnEndTile = false;
 				int intNewColumn = intCurrColumn;
 				int intNewRow = intCurrRow;
 
-				if(CanMoveToTile(CurrentPath, enmPrevDir, ref intNewColumn, ref intNewRow, ref intMoveTileCount, out blnEndTile))
-				{
-					if(blnEndTile && intMoveTileCount == intTotalMoveTiles/*TODO: YOU HAVE TOUCHED EVERY SINGLE MOVETILE*/)
-					{
-						CurrentPath.Add(new Tuple<int, int>(intNewColumn, intNewRow));
-						Solutions.Add(CurrentPath);
-						return;
-					}
+				int intCurrentMoveTileCount = intMoveTileCount;
 
-					RecursiveSolve(intNewColumn, intNewRow, enmPrevDir, CurrentPath, intMoveTileCount);
+				if (CanMoveToTile(CurrentPath, enmPrevDir, ref intNewColumn, ref intNewRow, ref intCurrentMoveTileCount, out blnBlockTile, out blnEndTile))
+				{
+					if (!blnBlockTile)
+					{
+						if (blnEndTile && intMoveTileCount == intTotalMoveTiles/*TODO: YOU HAVE TOUCHED EVERY SINGLE MOVETILE*/)
+						{
+							CurrentPath.Add(new Tuple<int, int>(intNewColumn, intNewRow));
+							Solutions.Add(CurrentPath);
+							return;
+						}
+
+						RecursiveSolve(intNewColumn, intNewRow, enmPrevDir, CurrentPath, intCurrentMoveTileCount);
+					}
 				}
-				else
+
+				if (!blnBlockTile)
 					return;
 			}
 
@@ -338,9 +360,10 @@ namespace SlickSlideLevelBuilder
 
 				int intCurrentMoveTileCount = intMoveTileCount;
 
-				if(CanMoveToTile(CurrentPath, (Direction)i, ref intNewColumn, ref intNewRow, ref intCurrentMoveTileCount, out blnEndTile))
+				bool blnBlockTile = false;
+				if (CanMoveToTile(CurrentPath, (Direction)i, ref intNewColumn, ref intNewRow, ref intCurrentMoveTileCount, out blnBlockTile, out blnEndTile))
 				{
-					if(blnEndTile && intMoveTileCount == intTotalMoveTiles /*TODO: YOU HAVE TOUCHED EVERY SINGLE MOVETILE*/)
+					if (blnEndTile && intMoveTileCount == intTotalMoveTiles /*TODO: YOU HAVE TOUCHED EVERY SINGLE MOVETILE*/)
 					{
 						CurrentPath.Add(new Tuple<int, int>(intNewColumn, intNewRow));
 						Solutions.Add(CurrentPath);
@@ -352,9 +375,10 @@ namespace SlickSlideLevelBuilder
 			}
 		}
 
-		private bool CanMoveToTile(List<Tuple<int, int>> CurrentSolution, Direction enmTryDir, ref int intNewColumn, ref int intNewRow, ref int intMoveTileCount, out bool blnEndTile)
+		private bool CanMoveToTile(List<Tuple<int, int>> CurrentSolution, Direction enmTryDir, ref int intNewColumn, ref int intNewRow, ref int intMoveTileCount, out bool blnBlockTile, out bool blnEndTile)
 		{
 			blnEndTile = false;
+			blnBlockTile = false;
 
 			switch (enmTryDir)
 			{
@@ -387,10 +411,7 @@ namespace SlickSlideLevelBuilder
 			else if (intNewRow < 0 || intNewRow >= TileGrid.GetLength(1))
 				return false;
 
-			if(CurrentSolution.Contains(new Tuple<int,int>(intNewColumn, intNewRow)))
-				return false;
-
-			if(TileGrid[intNewColumn, intNewRow].Tag == null)
+			if (TileGrid[intNewColumn, intNewRow].Tag == null)
 				return false;
 
 			char chrNewTile = ((Tile)TileGrid[intNewColumn, intNewRow].Tag).GetChar();
@@ -398,18 +419,22 @@ namespace SlickSlideLevelBuilder
 			//TODO: CHECK IF THIS NEW TILE IS VALID. OTHERWISE, CONTINUE.
 			if (chrNewTile == ((Tile)objLevelConfig.pictureBoxStepTile.Tag).GetChar())
 			{
+				if (CurrentSolution.Contains(new Tuple<int, int>(intNewColumn, intNewRow)))
+					return false;
 				//Solutions.Add(CurrentSolution);
 
 				intMoveTileCount++;
 				return true;
 			}
-			else if(chrNewTile == ((Tile)objLevelConfig.pictureBoxSlideTile.Tag).GetChar())
+			else if (chrNewTile == ((Tile)objLevelConfig.pictureBoxSlideTile.Tag).GetChar())
 				return true;
 			else if (chrNewTile == ((Tile)objLevelConfig.pictureBoxEndTile.Tag).GetChar())
 			{
 				blnEndTile = true;
 				return true;
 			}
+			else if (chrNewTile == ((Tile)objLevelConfig.pictureBoxBlockTile.Tag).GetChar())
+				blnBlockTile = true;
 
 			return false;
 		}

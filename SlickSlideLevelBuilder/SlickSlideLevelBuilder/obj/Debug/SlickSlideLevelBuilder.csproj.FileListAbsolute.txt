@@ -18,3 +18,4 @@ F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlide
 F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.csproj.GenerateResource.Cache
 F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.exe
 F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.pdb
+F:\SlickSlide\SlickSlideLevelBuilder\SlickSlideLevelBuilder\obj\Debug\SlickSlideLevelBuilder.csprojResolveAssemblyReference.cache

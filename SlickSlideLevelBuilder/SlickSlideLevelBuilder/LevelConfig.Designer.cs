@@ -34,13 +34,15 @@
 			this.numericUpDownRows = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.groupBoxTiles = new System.Windows.Forms.GroupBox();
+			this.label8 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.pictureBoxStartTile = new System.Windows.Forms.PictureBox();
+			this.pictureBoxEmpty = new System.Windows.Forms.PictureBox();
 			this.pictureBoxSlideTile = new System.Windows.Forms.PictureBox();
 			this.pictureBoxEndTile = new System.Windows.Forms.PictureBox();
 			this.pictureBoxBlockTile = new System.Windows.Forms.PictureBox();
@@ -49,20 +51,18 @@
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.pictureBoxEmpty = new System.Windows.Forms.PictureBox();
-			this.label8 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).BeginInit();
-			this.groupBox2.SuspendLayout();
+			this.groupBoxTiles.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxStartTile)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmpty)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlideTile)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxEndTile)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlockTile)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxStepTile)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentTile)).BeginInit();
 			this.menuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmpty)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonNewLevel
@@ -121,27 +121,38 @@
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Rows";
 			// 
-			// groupBox2
+			// groupBoxTiles
 			// 
-			this.groupBox2.Controls.Add(this.label8);
-			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.label6);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Controls.Add(this.label3);
-			this.groupBox2.Controls.Add(this.pictureBoxStartTile);
-			this.groupBox2.Controls.Add(this.pictureBoxEmpty);
-			this.groupBox2.Controls.Add(this.pictureBoxSlideTile);
-			this.groupBox2.Controls.Add(this.pictureBoxEndTile);
-			this.groupBox2.Controls.Add(this.pictureBoxBlockTile);
-			this.groupBox2.Controls.Add(this.pictureBoxStepTile);
-			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox2.Location = new System.Drawing.Point(12, 133);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(199, 304);
-			this.groupBox2.TabIndex = 2;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Tiles (LeftClick to edit, RightClick to select)";
+			this.groupBoxTiles.Controls.Add(this.label8);
+			this.groupBoxTiles.Controls.Add(this.label7);
+			this.groupBoxTiles.Controls.Add(this.label6);
+			this.groupBoxTiles.Controls.Add(this.label5);
+			this.groupBoxTiles.Controls.Add(this.label4);
+			this.groupBoxTiles.Controls.Add(this.label3);
+			this.groupBoxTiles.Controls.Add(this.pictureBoxStartTile);
+			this.groupBoxTiles.Controls.Add(this.pictureBoxEmpty);
+			this.groupBoxTiles.Controls.Add(this.pictureBoxSlideTile);
+			this.groupBoxTiles.Controls.Add(this.pictureBoxEndTile);
+			this.groupBoxTiles.Controls.Add(this.pictureBoxBlockTile);
+			this.groupBoxTiles.Controls.Add(this.pictureBoxStepTile);
+			this.groupBoxTiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBoxTiles.Location = new System.Drawing.Point(12, 133);
+			this.groupBoxTiles.Name = "groupBoxTiles";
+			this.groupBoxTiles.Size = new System.Drawing.Size(199, 304);
+			this.groupBoxTiles.TabIndex = 2;
+			this.groupBoxTiles.TabStop = false;
+			this.groupBoxTiles.Text = "Tiles (LeftClick to edit, RightClick to select)";
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label8.Location = new System.Drawing.Point(107, 212);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(36, 13);
+			this.label8.TabIndex = 1;
+			this.label8.Text = "Empty";
+			this.label8.Click += new System.EventHandler(this.pictureBoxCommon_Click);
 			// 
 			// label7
 			// 
@@ -204,6 +215,18 @@
 			this.pictureBoxStartTile.TabIndex = 0;
 			this.pictureBoxStartTile.TabStop = false;
 			this.pictureBoxStartTile.Click += new System.EventHandler(this.pictureBoxCommon_Click);
+			// 
+			// pictureBoxEmpty
+			// 
+			this.pictureBoxEmpty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.pictureBoxEmpty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pictureBoxEmpty.Location = new System.Drawing.Point(104, 209);
+			this.pictureBoxEmpty.Name = "pictureBoxEmpty";
+			this.pictureBoxEmpty.Size = new System.Drawing.Size(89, 89);
+			this.pictureBoxEmpty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBoxEmpty.TabIndex = 0;
+			this.pictureBoxEmpty.TabStop = false;
+			this.pictureBoxEmpty.Click += new System.EventHandler(this.pictureBoxCommon_Click);
 			// 
 			// pictureBoxSlideTile
 			// 
@@ -284,31 +307,9 @@
 			// loadLevelToolStripMenuItem
 			// 
 			this.loadLevelToolStripMenuItem.Name = "loadLevelToolStripMenuItem";
-			this.loadLevelToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+			this.loadLevelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.loadLevelToolStripMenuItem.Text = "Load Level";
-			// 
-			// pictureBoxEmpty
-			// 
-			this.pictureBoxEmpty.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.pictureBoxEmpty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBoxEmpty.Location = new System.Drawing.Point(104, 209);
-			this.pictureBoxEmpty.Name = "pictureBoxEmpty";
-			this.pictureBoxEmpty.Size = new System.Drawing.Size(89, 89);
-			this.pictureBoxEmpty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBoxEmpty.TabIndex = 0;
-			this.pictureBoxEmpty.TabStop = false;
-			this.pictureBoxEmpty.Click += new System.EventHandler(this.pictureBoxCommon_Click);
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(107, 212);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(36, 13);
-			this.label8.TabIndex = 1;
-			this.label8.Text = "Empty";
-			this.label8.Click += new System.EventHandler(this.pictureBoxCommon_Click);
+			this.loadLevelToolStripMenuItem.Click += new System.EventHandler(this.loadLevelToolStripMenuItem_Click);
 			// 
 			// LevelConfig
 			// 
@@ -316,7 +317,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(223, 655);
 			this.Controls.Add(this.pictureBoxCurrentTile);
-			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.groupBoxTiles);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -326,9 +327,10 @@
 			this.groupBox1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).EndInit();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
+			this.groupBoxTiles.ResumeLayout(false);
+			this.groupBoxTiles.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxStartTile)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmpty)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlideTile)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxEndTile)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxBlockTile)).EndInit();
@@ -336,7 +338,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxCurrentTile)).EndInit();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmpty)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -350,7 +351,7 @@
 		private System.Windows.Forms.NumericUpDown numericUpDownRows;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.GroupBox groupBoxTiles;
 		public System.Windows.Forms.PictureBox pictureBoxStepTile;
 		public System.Windows.Forms.PictureBox pictureBoxStartTile;
 		public System.Windows.Forms.PictureBox pictureBoxSlideTile;
