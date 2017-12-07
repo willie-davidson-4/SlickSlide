@@ -1,0 +1,20 @@
+Tile Behaviors:
+
+* Break/Step Tile
+o Can step on
+o Can only step on once
+* Once you step off, it breaks and turns into an empty tile
+* Slide Tile
+o Can step on
+o Will automatically move you in the direction that you stepped onto the tile
+o Will stop you if you hit a block tile (then you can move in any direction
+* Block Tile
+o Can’t step on
+* Empty Tile
+o Can step on
+o Will kill you
+* Start tile
+o Your starting position that you initially have to move off of
+* End Tile
+o Your end position
+o Can only move onto if you have stepped on ALL break/step tiles

@@ -1,8 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//TODO: ORGANIZE AND REDO EVERYTHING (like you're doing w/ level manager)
+
 public class Tile : MonoBehaviour
 {
+	public enum TileType
+	{
+		StepTile = 't',
+		SlideTile = 's',
+		BlockTile = 'b',
+		StartTile = 'i',
+		EndTile = 'e',
+		EmptyTile = 'n',
+		BaseTile = 'o'
+	}
+
+
+	public TileType enmTileType = TileType.BaseTile;
+	
 	Quaternion rotDesired;
 	Vector3 posDesired;
 
@@ -90,7 +106,6 @@ public class Tile : MonoBehaviour
 	// Update is called once per frame
 	public virtual bool UpdateTile (Player objThePlayer)
     {
-		Debug.Log("Base update tile!");
 		return blnMovable;
 	}
 
@@ -107,8 +122,6 @@ public class Tile : MonoBehaviour
 
 	public void StartRemoving()
 	{
-		Debug.Log("StartRemoving");
-
 		fltCurrPlaceTime = fltTimeToPlace;
 		
 		blnStarting = false;

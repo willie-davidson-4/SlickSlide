@@ -321,6 +321,8 @@ namespace SlickSlideLevelBuilder
 		//TODO: HOW TO STORE ALL THE DIFFERENT PATHS
 		private void RecursiveSolve(int intCurrColumn, int intCurrRow, Direction enmPrevDir, List<Tuple<int, int>> CurrentSolutionPath, int intMoveTileCount)
 		{
+			//TODO: WAAAAAAAYYYY TOO SLOW.
+
 			var CurrentPath = new List<Tuple<int, int>>(CurrentSolutionPath);
 			CurrentPath.Add(new Tuple<int, int>(intCurrColumn, intCurrRow));
 
