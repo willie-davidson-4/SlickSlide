@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
+//TODO: Don't have a tutorial! The bullshit ball of light will tell the player to explore. It will comment the first time the player dies or the first time it touches slide tile, etc though.
+
 public class BoardManager : MonoBehaviour
 {
 	#region Enums
@@ -53,12 +55,13 @@ public class BoardManager : MonoBehaviour
 	private GameObject objThePlayer;
 
 	Direction enmPreviousDirection = Direction.None;
+
 	#endregion
 
 	// Use this for initialization
 	void Start()
 	{
-		LoadLevel(GlobalVariables.LevelToLoad - 1);
+		LoadLevel(GlobalVariables.WorldToLoad, GlobalVariables.LevelToLoad);
 		fltCurrTime = fltNextTileTime;
 
 		intCurrX = 0;
@@ -128,11 +131,11 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 
-	void LoadLevel(int intLevelNumber)
+	void LoadLevel(int intWorldNumber, int intLevelNumber)
 	{
 		try
 		{
-			Tile.TileType[,] LevelTiles = Levels.ConvertCharArrayToTileTypeArray(Levels.LoadLevel(intLevelNumber));//Levels.ConvertCharArrayToTileTypeArray(Levels.TestLevel2);
+			Tile.TileType[,] LevelTiles = Levels.ConvertCharArrayToTileTypeArray(Levels.LoadLevel(intWorldNumber, intLevelNumber));//Levels.ConvertCharArrayToTileTypeArray(Levels.TestLevel2);
 			intColumns = LevelTiles.GetLength(0);
 			intRows = LevelTiles.GetLength(1);
 
@@ -225,7 +228,8 @@ public class BoardManager : MonoBehaviour
 
 	public void BoardWon()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene(0);		
+		SaveInfo.SaveLevelProgress(GlobalVariables.WorldToLoad, GlobalVariables.LevelToLoad);
+		UnityEngine.SceneManagement.SceneManager.LoadScene(1);		
 		//RemoveBoard();
 	}
 

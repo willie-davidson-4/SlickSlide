@@ -18,41 +18,51 @@ public struct IntVector2
 
 public static class Levels
 {
-	private static string[] strTestLevels = new string[] {
-		"nttte" + ":" +
-		"ntttn" + ":" +
-		"itttn",
+	private static string[][] strTestLevels = new string[][]
+		{
+			new string[] 
+			{
+				"nttte" + ":" +
+				"ntttn" + ":" +
+				"itttn",
 
-		"nttttte" + ":" +
-		"ntttttn" + ":" +
-		"ntttttn" + ":" +
-		"ntttttn" + ":" +
-		"itttttn",
+				"nttttte" + ":" +
+				"ntttttn" + ":" +
+				"ntttttn" + ":" +
+				"ntttttn" + ":" +
+				"itttttn",
 
-		"nbbtttttttbnnn" + ":" +
-		"nsssbtttttbnnn" + ":" +
-		"itttsststsstte" + ":" +
-		"nsssbtttttbnnn" + ":" +
-		"nbbtttttttbnnn",
+				"nbbtttttttbnnn" + ":" +
+				"nsssbtttttbnnn" + ":" +
+				"itttsststsstte" + ":" +
+				"nsssbtttttbnnn" + ":" +
+				"nbbtttttttbnnn",
+			},
 
-		"nttsst" + ":" +
-		"nttent" + ":" +
-		"nssnns" + ":" +
-		"nssnns" + ":" +
-		"nttnns" + ":" +
-		"ittsst",
+			new string[]
+			{
+				"nttsst" + ":" +
+				"nttent" + ":" +
+				"nssnns" + ":" +
+				"nssnns" + ":" +
+				"nttnns" + ":" +
+				"ittsst",
 
-		"ntttn" + ":" +
-		"ntttn" + ":" +
-		"ittte" + ":" +
-		"ntttn" + ":" +
-		"ntttn"
+				"ntttn" + ":" +
+				"ntttn" + ":" +
+				"ittte" + ":" +
+				"ntttn" + ":" +
+				"ntttn"
+			}
 	};
 
 
-	public static char[,] LoadLevel(int intLevel)
+	public static char[,] LoadLevel(int intWorld, int intLevel)
 	{
-		string strTestLevel = strTestLevels[intLevel];
+		intWorld = intWorld - 1;
+		intLevel = intLevel - 1;
+
+		string strTestLevel = strTestLevels[intWorld][intLevel];
 
 		string[] LevelRows = strTestLevel.Split(':');
 
@@ -87,5 +97,10 @@ public static class Levels
 		}
 
 		return Output;
+	}
+
+	public static int NumLevels(int intWorld)
+	{
+		return strTestLevels[intWorld - 1].Length;
 	}
 }

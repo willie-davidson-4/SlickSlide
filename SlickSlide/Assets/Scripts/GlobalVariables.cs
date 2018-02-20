@@ -10,6 +10,13 @@ public static class GlobalVariables
 		set { intLevelToLoad = value; }
 	}
 
+	private static int intWorldToLoad;
+	public static int WorldToLoad
+	{
+		get { return intWorldToLoad; }
+		set { intWorldToLoad = value; }
+	}
+
 /*
 	// Use this for initialization
 	void Start () 

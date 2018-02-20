@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class TestLevelSelector : MonoBehaviour 
 {
+	//TODO: Level 1 unlocks level 2, unlocks level 3, etc. Save player data or something for that.
+
+	public int intWorldToSelect;
 	public int intLevelToSelect;
 	//public int LevelToSelect 
 	//{
@@ -26,7 +29,8 @@ public class TestLevelSelector : MonoBehaviour
 
 	public void ButtonClicked()
 	{
+		GlobalVariables.WorldToLoad = intWorldToSelect;
 		GlobalVariables.LevelToLoad = intLevelToSelect;
-		UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+		UnityEngine.SceneManagement.SceneManager.LoadScene(2);
 	}
 }

@@ -1,0 +1,16 @@
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEditor.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Common.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEngine.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEngine.xml
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEditor.xml
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml
+F:\SlickSlide\SlickSlide\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Common.xml
+F:\SlickSlide\SlickSlide\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll
+F:\SlickSlide\SlickSlide\Temp\UnityVS_obj\Debug\Assembly-CSharp.pdb
